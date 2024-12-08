@@ -1,7 +1,8 @@
 import pkg from 'pg';
 import dotenv from 'dotenv';
 
-dotenv.config();
+// Load the appropriate .env file based on the environment
+dotenv.config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
 
 const { Pool } = pkg;
 
