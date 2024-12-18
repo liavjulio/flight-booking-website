@@ -13,5 +13,18 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  test_db:
+    image: postgres:latest
+    container_name: flight_booking_test_db
+    environment:
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password
+      POSTGRES_DB: test_flight_booking
+    ports:
+      - "5433:5432" # Map the test DB to port 5433 on the host
+    volumes:
+      - test_db_data:/var/lib/postgresql/data
+
 volumes:
   db_data:
+  test_db_data:
