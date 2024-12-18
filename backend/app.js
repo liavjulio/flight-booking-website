@@ -16,11 +16,13 @@ const createServer = () => {
   app.use('/api/flights', flightRoutes);
   app.use('/api/bookings', bookingRoutes);
 
-  const server = app.listen(PORT, () => {
+  const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on port ${PORT}`);
   });
 
   return { app, server };
 };
+
+createServer(); // Ensure this line is present to actually start the server
 
 export default createServer;

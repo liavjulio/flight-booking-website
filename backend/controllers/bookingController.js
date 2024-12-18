@@ -1,26 +1,23 @@
-import { createBooking } from '../models/bookingModel.js';
-import pool from '../config/db.js'; // Assuming you have a database pool connection
+import pool from '../config/db.js';
+
+export const getBookings = async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM bookings');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 export const addBooking = async (req, res) => {
   try {
     const { flightId, passengerName } = req.body;
-
-    // Validate input
-    if (!flightId || !passengerName) {
-      return res.status(400).json({ error: 'Missing flightId or passengerName' });
-    }
-
-    // Check if the flightId exists in the flights table
-    const flightCheck = await pool.query('SELECT * FROM flights WHERE id = $1', [flightId]);
-    if (flightCheck.rows.length === 0) {
-      return res.status(404).json({ error: `Flight with ID ${flightId} not found` });
-    }
-
-    // Create the booking
-    const booking = await createBooking(flightId, passengerName);
-    res.status(201).json(booking);
+    const result = await pool.query(
+      'INSERT INTO bookings (flight_id, passenger_name) VALUES ($1, $2) RETURNING *',
+      [flightId, passengerName]
+    );
+    res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.error('Error creating booking:', error);
     res.status(500).json({ error: error.message });
   }
 };
