@@ -4,9 +4,7 @@ name: Backend CI/CD Pipeline
 on:
   push:
     branches:
-      - main
-      - dev
-      - 'feature/**'
+      - '*'
   workflow_dispatch:
 
 jobs:
