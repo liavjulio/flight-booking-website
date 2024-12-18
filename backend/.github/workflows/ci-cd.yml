@@ -6,7 +6,9 @@ on:
       - main
       - dev
       - 'feature/**'
-  workflow_dispatch:
+  pull_request:       # Trigger the workflow on pull requests
+  workflow_dispatch:  # Allow manual triggering of the workflow
+
 jobs:
   build:
     name: Build and Test Backend
