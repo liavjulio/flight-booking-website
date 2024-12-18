@@ -8,10 +8,9 @@ beforeAll(() => {
   ({ app, server } = createServer());
 });
 
-afterAll((done) => {
-  server.close(() => {
-    console.log('Flight Routes server closed');
-    done();
+afterAll(async () => {
+  await new Promise((resolve) => {
+    server.close(resolve);
   });
 });
 
