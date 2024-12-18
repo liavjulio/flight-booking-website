@@ -6,7 +6,7 @@ on:
       - main
       - dev
       - 'feature/**'
-
+  workflow_dispatch:
 jobs:
   build:
     name: Build and Test Backend
