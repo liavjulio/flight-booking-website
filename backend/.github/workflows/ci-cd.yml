@@ -1,7 +1,7 @@
 ---
 name: Backend CI/CD Pipeline
 
-on: true
+on:
   push:
     branches:
       - main
@@ -78,4 +78,5 @@ jobs:
         run: |
           cd backend
           docker-compose up -d
-          
+
+# Ensure there is a blank line at the end of the file
