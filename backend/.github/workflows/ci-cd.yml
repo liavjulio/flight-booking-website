@@ -4,8 +4,10 @@ name: Backend CI/CD Pipeline
 on:
   push:
     branches:
-      - '**'
-    pull_request:
+      - main
+      - dev
+      - 'feature/**'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -38,11 +40,11 @@ jobs:
     steps:
       ### Step 1: Checkout Code
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       ### Step 2: Set Up Node.js
       - name: Set Up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
