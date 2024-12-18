@@ -1,3 +1,4 @@
+---
 name: Backend CI/CD Pipeline
 
 on:
@@ -6,8 +7,7 @@ on:
       - main
       - dev
       - 'feature/**'
-  pull_request:       # Trigger the workflow on pull requests
-  workflow_dispatch:  # Allow manual triggering of the workflow
+  workflow_dispatch:
 
 jobs:
   build:
